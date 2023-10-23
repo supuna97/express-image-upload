@@ -5,7 +5,7 @@ const fileUploadMiddleware = require('../middleware/fileUpload');
 
 const router = express.Router();
 
-router.post('/files/upload', fileUploadMiddleware.single('image'), fileController.upload);
-router.get('/files/:imageId', fileController.get);
+router.post('/files', fileUploadMiddleware.single('filename'), fileController.post);
+router.get('/files', fileController.get);
 
 module.exports = router;
