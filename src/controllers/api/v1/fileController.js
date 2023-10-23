@@ -1,28 +1,36 @@
-const File = require("../../../models/file");
+const { find, create } = require("../../../services/api/v1/fileService");
 
 const fileController = {
-  // Image upload controller
-  upload: async (req, res) => {
+  post: async (req, res) => {
+    let response;
     try {
-      const { filename, description } = req.body;
-      const image = await File.create({ filename, description });
-      return res.json(image);
+      let data = req.body;
+      if (req.file) data["filename"] = req.file.filename;
+
+      const result = await create(data);
+
+      response = res.json(result);
     } catch (error) {
-      return res.status(500).json({ error: "Image upload failed" });
+      response = res.status(500).json({ error: "Image upload failed" });
     }
+
+    return response;
   },
-  // Image retrieval controller
+
   get: async (req, res) => {
+    let response;
     try {
-      const { imageId } = req.params;
-      const image = await File.findByPk(imageId);
-      if (!image) {
-        return res.status(404).json({ error: "Image not found" });
+      const result = await find();
+      if (!result) {
+        return res.status(404).json({ error: "Result not found" });
       }
-      return res.json(image);
+
+      response = res.json(result);
     } catch (error) {
-      return res.status(500).json({ error: "Image retrieval failed" });
+      response = res.status(500).json({ error: "Result retrieval failed" });
     }
+
+    return response;
   },
 };
 
