@@ -1,4 +1,4 @@
-## express-image-upload with mysql
+## ExpressJS image upload and view with mysql
 
 ### description
 This is a simple express server that allows you to upload images to a server. It uses multer to handle the file uploads and stores the images in a folder called uploads. It also uses the cors package to allow cross origin requests.
