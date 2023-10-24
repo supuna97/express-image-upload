@@ -6,12 +6,11 @@ const fileController = {
     try {
       let data = req.body;
       if (req.file) data["filename"] = req.file.filename;
-
       const result = await create(data);
 
       response = res.json(result);
     } catch (error) {
-      response = res.status(500).json({ error: "Image upload failed" });
+      response = res.status(500).json({ error: "Data save failed" });
     }
 
     return response;
