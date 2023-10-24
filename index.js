@@ -9,7 +9,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Serve uploaded images statically
-app.use('/upload', express.static('storage/upload/images'));
+app.use('/uploads', express.static('storage/upload/images'));
 
 app.use(bodyParser.json());
 app.use(express.json());
