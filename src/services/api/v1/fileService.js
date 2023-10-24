@@ -5,7 +5,6 @@ const fileService = {
     const result = await File.findAll();
 
     result.forEach(async (data) => {
-      console.log(data);
       data.filename = `http://localhost:3000/uploads/${data.filename}`;
     });
 
